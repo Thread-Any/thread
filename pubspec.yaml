@@ -43,3 +43,6 @@ flutter:
           weight: 200
         - asset: assets/fonts/MinSans-Thin.otf
           weight: 100
+    - family: MinIcons
+      fonts:
+        - asset: assets/fonts/MinIcons.ttf
