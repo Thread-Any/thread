@@ -30,19 +30,19 @@ class CommonBottomNavigationBar extends StatelessWidget {
                 Get.toNamed(Routes.threads);
               },
               icon: currentIndex == 0
-                  ? Icon(
+                  ? const Icon(
                       MinIcons.home3,
                       size: 28,
-                      color: colors['UI01'],
+                      color: ColorStyles.sunset01,
                     )
-                  : Icon(
+                  : const Icon(
                       MinIcons.home2,
                       size: 28,
-                      color: colors['UI03'],
+                      color: ColorStyles.sunset03,
                     ),
             ),
             IconButton(
-              highlightColor: Colors.transparent,
+              highlightColor: ColorStyles.transparent,
               onPressed: () {
                 Get.bottomSheet(
                   ignoreSafeArea: false,
@@ -64,11 +64,11 @@ class CommonBottomNavigationBar extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: CircleAvatar(
-                  backgroundColor: colors['UI01'],
-                  child: const Icon(
+                child: const CircleAvatar(
+                  backgroundColor: ColorStyles.sunset01,
+                  child: Icon(
                     MinIcons.add,
-                    color: Colors.white,
+                    color: ColorStyles.white,
                     size: 28,
                   ),
                 ),
@@ -80,15 +80,15 @@ class CommonBottomNavigationBar extends StatelessWidget {
                 Get.toNamed(Routes.search);
               },
               icon: currentIndex == 2
-                  ? Icon(
+                  ? const Icon(
                       MinIcons.search2,
                       size: 28,
-                      color: colors['UI01'],
+                      color: ColorStyles.sunset01,
                     )
-                  : Icon(
+                  : const Icon(
                       MinIcons.search,
                       size: 28,
-                      color: colors['UI03'],
+                      color: ColorStyles.sunset03,
                     ),
             )
           ],
