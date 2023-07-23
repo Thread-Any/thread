@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import '../routes/app_pages.dart';
 
@@ -10,6 +11,7 @@ void main() {
     SystemUiMode.manual,
     overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top],
   );
+  initializeDateFormatting('ko');
 
   runApp(const MyApp());
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../const/colors.dart';
+
 class ComposerBottomSheet extends StatelessWidget {
   const ComposerBottomSheet({super.key});
 
@@ -8,7 +10,7 @@ class ComposerBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        color: Colors.white,
+        color: ColorStyles.white,
         child: Column(
           children: [
             const Text(

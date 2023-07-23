@@ -48,4 +48,6 @@ class ColorStyles {
 
   static const Color point01 = orange50;
   static const Color point02 = orange10;
+
+  static const Color red01 = Color(0xFFF25C51);
 }

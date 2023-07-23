@@ -25,7 +25,8 @@ class CommonBottomNavigationBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             IconButton(
-              highlightColor: Colors.transparent,
+              highlightColor: ColorStyles.transparent,
+              hoverColor: ColorStyles.transparent,
               onPressed: () {
                 Get.toNamed(Routes.threads);
               },
@@ -43,6 +44,7 @@ class CommonBottomNavigationBar extends StatelessWidget {
             ),
             IconButton(
               highlightColor: ColorStyles.transparent,
+              hoverColor: ColorStyles.transparent,
               onPressed: () {
                 Get.bottomSheet(
                   ignoreSafeArea: false,
@@ -76,6 +78,7 @@ class CommonBottomNavigationBar extends StatelessWidget {
             ),
             IconButton(
               highlightColor: Colors.transparent,
+              hoverColor: ColorStyles.transparent,
               onPressed: () {
                 Get.toNamed(Routes.search);
               },

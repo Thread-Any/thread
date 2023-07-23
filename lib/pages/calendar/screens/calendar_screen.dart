@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
-import '../controllers/threads_controller.dart';
+import '../controllers/calendar_controller.dart';
 import '../../../common/min_icons_icons.dart';
 import '../../../const/colors.dart';
 import '../../../models/thread.dart';
@@ -10,8 +11,8 @@ import '../../../widgets/multi_thread_card.dart';
 import '../../../widgets/single_thread_card.dart';
 import '../../../widgets/common_bottom_navigation_bar.dart';
 
-class ThreadsScreen extends GetView<ThreadsController> {
-  const ThreadsScreen({super.key});
+class CalendarScreen extends GetView<CalendarController> {
+  const CalendarScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -80,9 +81,9 @@ class ThreadsScreen extends GetView<ThreadsController> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
-              '스레드',
-              style: TextStyle(
+            Text(
+              DateFormat('y년 M월', 'ko').format(DateTime.now()),
+              style: const TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 21,
               ),
@@ -91,9 +92,9 @@ class ThreadsScreen extends GetView<ThreadsController> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 IconButton(
-                  onPressed: () => Get.toNamed(Routes.calendar),
+                  onPressed: () => Get.toNamed(Routes.threads),
                   icon: const Icon(
-                    MinIcons.date,
+                    MinIcons.list,
                     color: ColorStyles.sunset01,
                   ),
                 ),
