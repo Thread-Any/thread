@@ -8,13 +8,16 @@ class SearchScreen extends GetView<SearchController> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
-        child: Text(
-          '검색',
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: const Scaffold(
+        body: SafeArea(
+          child: Text(
+            '검색',
+          ),
         ),
+        bottomNavigationBar: CommonBottomNavigationBar(),
       ),
-      bottomNavigationBar: CommonBottomNavigationBar(),
     );
   }
 }
