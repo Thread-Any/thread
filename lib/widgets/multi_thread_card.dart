@@ -4,7 +4,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
 import '../models/thread.dart';
 import '../widgets/thread_more_bottom_sheet.dart';
 import '../../common/min_icons_icons.dart';
@@ -59,12 +58,17 @@ class MultiThreadCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 12),
-                      const Text(
-                        '엮인 글 더보기',
-                        style: TextStyle(
-                          color: ColorStyles.point01,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15,
+                      InkWell(
+                        onTap: () {
+                          // TODO: 상세 보기 구현
+                        },
+                        child: const Text(
+                          '엮인 글 더보기',
+                          style: TextStyle(
+                            color: ColorStyles.point01,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15,
+                          ),
                         ),
                       )
                     ],
@@ -166,15 +170,17 @@ class _ThreadCard extends StatelessWidget {
           height: 40,
           padding: const EdgeInsets.only(bottom: 8),
           decoration: const BoxDecoration(color: ColorStyles.bg01),
-          child: icon != null
-              ? Text(
-                  icon!,
-                  style: const TextStyle(fontSize: 24),
-                )
-              : const Icon(
-                  MinIcons.memo,
-                  color: ColorStyles.sunset03,
-                ),
+          child: Center(
+            child: icon != null
+                ? Text(
+                    icon!,
+                    style: const TextStyle(fontSize: 24),
+                  )
+                : const Icon(
+                    MinIcons.memo,
+                    color: ColorStyles.sunset03,
+                  ),
+          ),
         ),
       ],
     );

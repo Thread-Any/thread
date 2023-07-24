@@ -5,6 +5,7 @@ import '../controllers/calendar_controller.dart';
 class CalendarBind extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<CalendarController>(() => CalendarController());
+    // Get.lazyPut<CalendarController>(() => CalendarController());
+    Get.put(CalendarController());
   }
 }

@@ -24,16 +24,15 @@ class ThreadsScreen extends GetView<ThreadsController> {
           decoration: const BoxDecoration(
             color: ColorStyles.bg03,
           ),
-          child: Container(
-            decoration: const BoxDecoration(
-              color: ColorStyles.bg01,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
-              ),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
             ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
+            child: Container(
+              decoration: const BoxDecoration(
+                color: ColorStyles.bg01,
+              ),
               child: ListView.builder(
                 itemBuilder: (context, index) => Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
