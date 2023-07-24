@@ -78,6 +78,8 @@ class ThreadsScreen extends GetView<ThreadsController> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           toolbarHeight: 64,
+          foregroundColor: ColorStyles.sunset01,
+          surfaceTintColor: ColorStyles.transparent,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
