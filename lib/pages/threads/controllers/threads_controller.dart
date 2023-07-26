@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class ThreadsController extends GetxController {
+  final isCalendarView = false.obs;
   final selectedDate = DateTime.utc(
     DateTime.now().year,
     DateTime.now().month,
@@ -13,6 +14,10 @@ class ThreadsController extends GetxController {
     DateTime.now().day,
   ).obs;
   final calendarFormat = CalendarFormat.week.obs;
+
+  void changeView() {
+    isCalendarView.value = !isCalendarView.value;
+  }
 
   void changeSelectedDate({required DateTime day}) {
     selectedDate.value = day;

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../controllers/threads_controller.dart';
 import '../../../const/colors.dart';
 import '../../../widgets/empty_trhead.dart';
 
-class TreadsListView extends StatelessWidget {
+class TreadsListView extends GetView<ThreadsController> {
   const TreadsListView({super.key});
 
   @override

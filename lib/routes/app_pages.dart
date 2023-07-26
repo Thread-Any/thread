@@ -10,7 +10,7 @@ import '../pages/search/screens/search_screen.dart';
 part 'app_routes.dart';
 
 class AppPages {
-  static const initial = '${Routes.threads}?viewMode=list';
+  static const initial = Routes.threads;
 
   static final routes = [
     GetPage(
