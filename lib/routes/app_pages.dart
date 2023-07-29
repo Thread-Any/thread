@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../pages/compose/bindings/compose_binding.dart';
+import '../pages/compose/screens/compose_screen.dart';
 import '../pages/threads/bindings/threads_binding.dart';
 import '../pages/threads/screens/threads_screen.dart';
 import '../pages/setting/bindings/setting_binding.dart';
@@ -18,6 +20,13 @@ class AppPages {
       page: () => const ThreadsScreen(),
       binding: ThreadsBind(),
       transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.compose,
+      page: () => const ComposeScreen(),
+      binding: ComposeBind(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 300),
     ),
     GetPage(
       name: _Paths.search,

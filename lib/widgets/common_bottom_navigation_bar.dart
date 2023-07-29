@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../widgets/composer_bottom_sheet.dart';
 import '../../common/min_icons_icons.dart';
 import '../../const/colors.dart';
 import '../../routes/app_pages.dart';
@@ -46,11 +45,7 @@ class CommonBottomNavigationBar extends StatelessWidget {
               highlightColor: ColorStyles.transparent,
               hoverColor: ColorStyles.transparent,
               onPressed: () {
-                Get.bottomSheet(
-                  ignoreSafeArea: false,
-                  isScrollControlled: true,
-                  const ComposerBottomSheet(),
-                );
+                Get.toNamed(Routes.compose);
               },
               icon: Container(
                 width: 52,

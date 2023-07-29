@@ -78,7 +78,7 @@ class ThreadsCalendarView extends GetView<ThreadsController> {
                   threads: [
                     ThreadModel(
                       id: 0,
-                      icon: '🍚',
+                      emoji: '🍚',
                       createdAt: DateTime(2022, 1, 22),
                       content:
                           '좀 살아보니 알겠는 건 그냥 하루 세 끼를 함께 챙겨 먹는 주말이 있고 함께 잠들 수 있는 집이 있다는 게 그렇게 평범하게 사는 것도 쉬운 게 아니라는 것시간이 지나면서 더 견고해지는 건 그것을 지키기 위한 마음',

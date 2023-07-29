@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:thread/routes/app_pages.dart';
 
 import '../const/colors.dart';
-import '../../widgets/composer_bottom_sheet.dart';
 
 class EmptyThread extends StatelessWidget {
   const EmptyThread({super.key});
@@ -39,20 +39,17 @@ class EmptyThread extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Get.bottomSheet(
-                  ignoreSafeArea: false,
-                  isScrollControlled: true,
-                  const ComposerBottomSheet(),
-                );
+                Get.toNamed(Routes.compose);
               },
               style: ElevatedButton.styleFrom(
                 padding:
                     const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 elevation: 0,
                 backgroundColor: ColorStyles.bg03,
+                shadowColor: ColorStyles.transparent,
                 surfaceTintColor: ColorStyles.bg03,
               ),
               child: const Text(

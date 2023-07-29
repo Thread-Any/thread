@@ -1,13 +1,15 @@
 class ThreadModel {
   final int id;
-  final String? icon;
   final DateTime createdAt;
+  final String? emoji;
+  final String? title;
   final String content;
 
   ThreadModel({
     required this.id,
-    this.icon,
     required this.createdAt,
+    this.emoji,
+    this.title,
     required this.content,
   });
 }

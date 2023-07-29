@@ -48,41 +48,33 @@ class ThreadsTitle extends GetView<ThreadsController> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Stack(
-                children: [
-                  Visibility(
-                    visible: !controller.isCalendarView.value,
-                    maintainAnimation: true,
-                    maintainState: true,
-                    child: AnimatedOpacity(
-                      opacity: controller.isCalendarView.value ? 0 : 1,
-                      duration: const Duration(milliseconds: 300),
-                      child: IconButton(
-                        onPressed: () => controller.changeView(),
-                        icon: const Icon(
-                          MinIcons.list,
-                          color: ColorStyles.sunset01,
-                        ),
-                      ),
+              Offstage(
+                offstage: controller.isCalendarView.value,
+                child: AnimatedOpacity(
+                  opacity: controller.isCalendarView.value ? 0 : 1,
+                  duration: const Duration(milliseconds: 300),
+                  child: IconButton(
+                    onPressed: () => controller.changeView(),
+                    icon: const Icon(
+                      MinIcons.date,
+                      color: ColorStyles.sunset01,
                     ),
                   ),
-                  Visibility(
-                    visible: controller.isCalendarView.value,
-                    maintainAnimation: true,
-                    maintainState: true,
-                    child: AnimatedOpacity(
-                      opacity: controller.isCalendarView.value ? 1 : 0,
-                      duration: const Duration(milliseconds: 300),
-                      child: IconButton(
-                        onPressed: () => controller.changeView(),
-                        icon: const Icon(
-                          MinIcons.date,
-                          color: ColorStyles.sunset01,
-                        ),
-                      ),
+                ),
+              ),
+              Offstage(
+                offstage: !controller.isCalendarView.value,
+                child: AnimatedOpacity(
+                  opacity: controller.isCalendarView.value ? 1 : 0,
+                  duration: const Duration(milliseconds: 300),
+                  child: IconButton(
+                    onPressed: () => controller.changeView(),
+                    icon: const Icon(
+                      MinIcons.list,
+                      color: ColorStyles.sunset01,
                     ),
                   ),
-                ],
+                ),
               ),
               IconButton(
                 onPressed: () => Get.toNamed(Routes.setting),

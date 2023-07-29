@@ -34,7 +34,7 @@ class MultiThreadCard extends StatelessWidget {
           for (ThreadModel thread in threads.sublist(0, min(threads.length, 2)))
             _ThreadCard(
               id: thread.id,
-              icon: thread.icon,
+              emoji: thread.emoji,
               createdAt: thread.createdAt,
               content: thread.content,
             ),
@@ -84,13 +84,13 @@ class MultiThreadCard extends StatelessWidget {
 class _ThreadCard extends StatelessWidget {
   const _ThreadCard({
     required this.id,
-    this.icon,
+    this.emoji,
     required this.createdAt,
     required this.content,
   });
 
   final int id;
-  final String? icon;
+  final String? emoji;
   final DateTime createdAt;
   final String content;
 
@@ -171,9 +171,9 @@ class _ThreadCard extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 8),
           decoration: const BoxDecoration(color: ColorStyles.bg01),
           child: Center(
-            child: icon != null
+            child: emoji != null
                 ? Text(
-                    icon!,
+                    emoji!,
                     style: const TextStyle(fontSize: 24),
                   )
                 : const Icon(
