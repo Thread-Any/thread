@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../controllers/threads_controller.dart';
 import '../../../const/colors.dart';
-import '../../../widgets/empty_trhead.dart';
+import 'threads_empty_view.dart';
 
 class TreadsListView extends GetView<ThreadsController> {
   const TreadsListView({super.key});
@@ -21,7 +21,7 @@ class TreadsListView extends GetView<ThreadsController> {
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
-        child: EmptyThread(),
+        child: ThreadsEmptyView(),
         // child: Container(
         //   decoration: const BoxDecoration(
         //     color: ColorStyles.bg01,

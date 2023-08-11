@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../common/min_icons_icons.dart';
-import '../const/colors.dart';
-import '../pages/compose/controllers/compose_controller.dart';
-import '../widgets/calendar.dart';
+import '../../../common/min_icons_icons.dart';
+import '../../../const/colors.dart';
+import '../controllers/compose_controller.dart';
+import '../../../widgets/calendar.dart';
 
 class ComposeButtons extends GetView<ComposeController> {
   const ComposeButtons({

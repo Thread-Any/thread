@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:thread/routes/app_pages.dart';
 
-import '../const/colors.dart';
+import '../../../const/colors.dart';
 
-class EmptyThread extends StatelessWidget {
-  const EmptyThread({super.key});
+class ThreadsEmptyView extends StatelessWidget {
+  const ThreadsEmptyView({super.key});
 
   @override
   Widget build(BuildContext context) {

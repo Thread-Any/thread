@@ -5,8 +5,8 @@ import '../../common/min_icons_icons.dart';
 import '../../const/colors.dart';
 import '../../routes/app_pages.dart';
 
-class CommonBottomNavigationBar extends StatelessWidget {
-  const CommonBottomNavigationBar({super.key});
+class BottomNavigationBar extends StatelessWidget {
+  const BottomNavigationBar({super.key});
 
   @override
   Widget build(BuildContext context) {

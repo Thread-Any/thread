@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide BottomNavigationBar;
 import 'package:get/get.dart';
 
 import '../controllers/threads_controller.dart';
 import '../../../const/colors.dart';
-import '../../../widgets/common_bottom_navigation_bar.dart';
+import '../../../widgets/bottom_navigation_bar.dart';
 import '../widgets/threads_title.dart';
 import '../widgets/threads_calendar_view.dart';
 import '../widgets/threads_list_view.dart';
@@ -46,7 +46,7 @@ class ThreadsScreen extends GetView<ThreadsController> {
           title: const ThreadsTitle(),
           backgroundColor: ColorStyles.bg03,
         ),
-        bottomNavigationBar: const CommonBottomNavigationBar(),
+        bottomNavigationBar: const BottomNavigationBar(),
         backgroundColor: ColorStyles.bg01,
       ),
     );

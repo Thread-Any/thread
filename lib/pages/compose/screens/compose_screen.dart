@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 
 import '../controllers/compose_controller.dart';
 import '../../../widgets/custom_emoji_picker.dart';
-import '../../../widgets/compose_buttons.dart';
+import '../widgets/compose_buttons.dart';
 import '../../../common/min_icons_icons.dart';
 import '../../../const/colors.dart';
 

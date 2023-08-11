@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide BottomNavigationBar;
 import 'package:get/get.dart';
 
-import '../../../widgets/common_bottom_navigation_bar.dart';
+import '../../../widgets/bottom_navigation_bar.dart';
 
 class SearchScreen extends GetView<SearchController> {
   const SearchScreen({super.key});
@@ -16,7 +16,7 @@ class SearchScreen extends GetView<SearchController> {
             '검색',
           ),
         ),
-        bottomNavigationBar: CommonBottomNavigationBar(),
+        bottomNavigationBar: BottomNavigationBar(),
       ),
     );
   }
