@@ -5,25 +5,15 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../controllers/compose_controller.dart';
-import '../../../widgets/custom_emoji_picker.dart';
 import '../widgets/compose_buttons.dart';
+import '../../../widgets/custom_emoji_picker.dart';
 import '../../../common/min_icons_icons.dart';
 import '../../../const/colors.dart';
 
-class ComposeScreen extends StatefulWidget {
-  const ComposeScreen({super.key});
-
-  @override
-  State<ComposeScreen> createState() => _ComposeScreenState();
-}
-
-class _ComposeScreenState extends State<ComposeScreen> {
+class ComposeScreen extends GetView<ComposeController> {
   final GlobalKey<FormState> formKey = GlobalKey();
-  final controller = Get.put(ComposeController());
 
-  String? emoji;
-  String? title;
-  String? content;
+  ComposeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +48,6 @@ class _ComposeScreenState extends State<ComposeScreen> {
               ),
               Form(
                 key: formKey,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Expanded(
                   child: Container(
                     decoration: const BoxDecoration(
@@ -112,20 +101,19 @@ class _ComposeScreenState extends State<ComposeScreen> {
                                       CustomEmojiPicker(
                                         onEmojiSelected: (Category? category,
                                             Emoji newEmoji) {
-                                          emoji = newEmoji.emoji;
-                                          // controller.changeEmoji(
-                                          //     newEmoji: emoji);
+                                          controller.changeEmoji(
+                                              newEmoji: newEmoji);
                                           Get.back();
                                         },
                                       ),
                                     ),
-                                    child: (emoji != null)
+                                    child: (controller.emoji.isNotEmpty)
                                         ? SizedBox(
                                             width: 32,
                                             height: 32,
                                             child: Center(
                                               child: Text(
-                                                emoji!,
+                                                controller.emoji.value,
                                                 style: const TextStyle(
                                                   fontSize: 32,
                                                   height: 1,
@@ -160,8 +148,10 @@ class _ComposeScreenState extends State<ComposeScreen> {
                                             const Duration(milliseconds: 300),
                                         child: TextFormField(
                                           validator: titleValidator,
-                                          onSaved: (String? val) {
-                                            title = val;
+                                          onSaved: (val) {
+                                            if (val != null) {
+                                              controller.title.value = val;
+                                            }
                                           },
                                           autofocus: true,
                                           cursorHeight: 24,
@@ -191,7 +181,9 @@ class _ComposeScreenState extends State<ComposeScreen> {
                                     child: TextFormField(
                                       validator: contentValidator,
                                       onSaved: (String? val) {
-                                        content = val;
+                                        if (val != null) {
+                                          controller.contents.value = val;
+                                        }
                                       },
                                       textAlignVertical: TextAlignVertical.top,
                                       keyboardType: TextInputType.multiline,
@@ -242,7 +234,7 @@ class _ComposeScreenState extends State<ComposeScreen> {
   }
 
   String? contentValidator(String? val) {
-    if ((val == null || val.isEmpty)) {
+    if (val == null || val.isEmpty) {
       return '내용을 입력해주세요';
     }
 
@@ -252,7 +244,11 @@ class _ComposeScreenState extends State<ComposeScreen> {
   void onSavedPressed() {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
-      print({emoji, title, content});
+      print({
+        controller.emoji.value,
+        controller.title.value,
+        controller.contents.value
+      });
 
       // TODO: database 저장
       Get.back();

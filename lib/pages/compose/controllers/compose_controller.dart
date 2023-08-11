@@ -14,6 +14,16 @@ class ComposeController extends GetxController {
   ).obs;
   final showTitle = true.obs;
   final emoji = ''.obs;
+  final title = ''.obs;
+  final contents = ''.obs;
+
+  @override
+  void onInit() {
+    print('아이디: ${Get.parameters['id']}');
+    // TODO: 데이터 조회
+
+    super.onInit();
+  }
 
   void changeShowTitle() {
     showTitle.value = !showTitle.value;

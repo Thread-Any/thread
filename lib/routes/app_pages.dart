@@ -23,7 +23,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.compose,
-      page: () => const ComposeScreen(),
+      page: () => ComposeScreen(),
       binding: ComposeBind(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 300),
