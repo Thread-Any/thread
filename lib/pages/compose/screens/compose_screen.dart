@@ -188,6 +188,9 @@ class ComposeScreen extends GetView<ComposeController> {
                                       textAlignVertical: TextAlignVertical.top,
                                       keyboardType: TextInputType.multiline,
                                       maxLines: null,
+                                      inputFormatters: [
+                                        LengthLimitingTextInputFormatter(300)
+                                      ],
                                       cursorHeight: 17,
                                       style: const TextStyle(
                                         fontWeight: FontWeight.w400,

@@ -4,6 +4,8 @@ import '../pages/compose/bindings/compose_binding.dart';
 import '../pages/compose/screens/compose_screen.dart';
 import '../pages/threads/bindings/threads_binding.dart';
 import '../pages/threads/screens/threads_screen.dart';
+import '../pages/thread/bindings/thread_binding.dart';
+import '../pages/thread/screens/thread_screen.dart';
 import '../pages/setting/bindings/setting_binding.dart';
 import '../pages/setting/screens/setting_screen.dart';
 import '../pages/search/bindings/search_binding.dart';
@@ -18,12 +20,23 @@ class AppPages {
     GetPage(
       name: _Paths.threads,
       page: () => const ThreadsScreen(),
-      binding: ThreadsBind(),
+      title: 'Threads',
+      bindings: [ThreadsBind(), ThreadBind()],
       transition: Transition.fadeIn,
+      children: [
+        GetPage(
+          name: _Paths.id,
+          page: () => const ThreadScreen(),
+          title: 'Thread',
+          binding: ThreadBind(),
+          transition: Transition.rightToLeftWithFade,
+        )
+      ],
     ),
     GetPage(
       name: _Paths.compose,
       page: () => ComposeScreen(),
+      title: 'Compose',
       binding: ComposeBind(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 300),
@@ -31,12 +44,14 @@ class AppPages {
     GetPage(
       name: _Paths.search,
       page: () => const SearchScreen(),
+      title: 'Search',
       binding: SearchBind(),
       transition: Transition.fadeIn,
     ),
     GetPage(
       name: _Paths.setting,
       page: () => const SettingScreen(),
+      title: 'Setting',
       binding: SettingBind(),
       transition: Transition.fadeIn,
     ),

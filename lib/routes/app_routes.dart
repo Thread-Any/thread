@@ -2,17 +2,17 @@ part of 'app_pages.dart';
 
 abstract class Routes {
   static const threads = _Paths.threads;
-  static const threadDetails = _Paths.threadDetails;
-  static const calendar = _Paths.calendar;
+  static const thread = _Paths.threads + _Paths.id;
   static const compose = _Paths.compose;
   static const search = _Paths.search;
   static const setting = _Paths.setting;
+
+  static String THREAD({required int id, int? index}) => '$threads/$id';
 }
 
 abstract class _Paths {
   static const threads = '/threads';
-  static const threadDetails = '/:threadId';
-  static const calendar = '/calendar';
+  static const id = '/:id';
   static const compose = '/compose';
   static const search = '/search';
   static const setting = '/setting';

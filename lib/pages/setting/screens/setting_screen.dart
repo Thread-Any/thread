@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:thread/common/min_icons_icons.dart';
-import 'package:thread/const/colors.dart';
-import 'package:thread/routes/app_pages.dart';
 
 import '../controllers/setting_controller.dart';
+import '../../../common/min_icons_icons.dart';
+import '../../../const/colors.dart';
+import '../../../routes/app_pages.dart';
 
 class SettingScreen extends GetView<SettingController> {
   const SettingScreen({super.key});

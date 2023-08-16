@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:thread/routes/app_pages.dart';
 
 import '../../../const/colors.dart';
+import '../../../routes/app_pages.dart';
 
 class ThreadsEmptyView extends StatelessWidget {
   const ThreadsEmptyView({super.key});

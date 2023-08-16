@@ -2,8 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:thread/routes/app_pages.dart';
 
-import '../widgets/thread_more_bottom_sheet.dart';
+import '../models/more_menu.dart';
+import 'more_menu_bottom_sheet.dart';
 import '../../common/min_icons_icons.dart';
 import '../../const/colors.dart';
 
@@ -35,80 +37,102 @@ class SingleThreadCard extends StatelessWidget {
           ),
         ),
       ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            width: 32,
-            height: 32,
-            child: Center(
-              child: icon != null
-                  ? Text(
-                      icon!,
-                      style: const TextStyle(fontSize: 24),
-                    )
-                  : const Icon(
-                      MinIcons.memo,
-                      color: ColorStyles.sunset03,
-                    ),
-            ),
-          ),
-          const SizedBox(width: 12),
-          Flexible(
-            fit: FlexFit.tight,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 16,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        DateFormat('y년 M월 d일(E)', 'ko').format(createdAt),
-                        style: const TextStyle(color: ColorStyles.sunset02),
-                      ),
-                      SizedBox(
-                        width: 16,
-                        height: 16,
-                        child: IconButton(
-                          onPressed: () => Get.bottomSheet(
-                            enableDrag: false,
-                            ThreadMoreBottomSheet(id: id),
-                          ),
-                          icon: const Icon(MinIcons.more_horiz),
-                          iconSize: 16,
-                          padding: const EdgeInsets.all(0),
-                          color: ColorStyles.sunset02,
-                        ),
+      child: GestureDetector(
+        onTap: () {
+          Get.toNamed(Routes.THREAD(id: id));
+        },
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: 32,
+              height: 32,
+              child: Center(
+                child: icon != null
+                    ? Text(
+                        icon!,
+                        style: const TextStyle(fontSize: 24),
                       )
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Obx(
-                  () => RichText(
-                    text: TextSpan(
-                      text: seeMore.value ? content.substring(0, 100) : content,
-                      style: const TextStyle(color: ColorStyles.sunset01),
+                    : const Icon(
+                        MinIcons.memo,
+                        color: ColorStyles.sunset03,
+                      ),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Flexible(
+              fit: FlexFit.tight,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 16,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        TextSpan(
-                          text: seeMore.value ? '...더보기' : '',
+                        Text(
+                          DateFormat('y년 M월 d일(E)', 'ko').format(createdAt),
                           style: const TextStyle(color: ColorStyles.sunset02),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              seeMore.value = false;
-                            },
                         ),
+                        SizedBox(
+                          width: 16,
+                          height: 16,
+                          child: IconButton(
+                            onPressed: () => Get.bottomSheet(
+                              enableDrag: false,
+                              MoreMenuBottomSheet(
+                                menu: [
+                                  MoreMenuModel(
+                                    text: '엮인 글 쓰기',
+                                    onPressed: () {},
+                                  ),
+                                  MoreMenuModel(
+                                    text: '수정',
+                                    onPressed: () {},
+                                  ),
+                                  MoreMenuModel(
+                                    text: '삭제',
+                                    onPressed: () {},
+                                    color: ColorStyles.red01,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            icon: const Icon(MinIcons.more_horiz),
+                            iconSize: 16,
+                            padding: const EdgeInsets.all(0),
+                            color: ColorStyles.sunset02,
+                          ),
+                        )
                       ],
                     ),
                   ),
-                )
-              ],
+                  const SizedBox(height: 8),
+                  Obx(
+                    () => RichText(
+                      text: TextSpan(
+                        text:
+                            seeMore.value ? content.substring(0, 100) : content,
+                        style: const TextStyle(color: ColorStyles.sunset01),
+                        children: [
+                          TextSpan(
+                            text: seeMore.value ? '...더보기' : '',
+                            style: const TextStyle(color: ColorStyles.sunset02),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                seeMore.value = false;
+                              },
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

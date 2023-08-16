@@ -4,8 +4,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
+import '../models/more_menu.dart';
+import '../routes/app_pages.dart';
 import '../models/thread.dart';
-import '../widgets/thread_more_bottom_sheet.dart';
+import 'more_menu_bottom_sheet.dart';
 import '../../common/min_icons_icons.dart';
 import '../../const/colors.dart';
 
@@ -32,11 +35,16 @@ class MultiThreadCard extends StatelessWidget {
       child: Column(
         children: [
           for (ThreadModel thread in threads.sublist(0, min(threads.length, 2)))
-            _ThreadCard(
-              id: thread.id,
-              emoji: thread.emoji,
-              createdAt: thread.createdAt,
-              content: thread.content,
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(Routes.THREAD(id: thread.id));
+              },
+              child: _ThreadCard(
+                id: thread.id,
+                emoji: thread.emoji,
+                createdAt: thread.createdAt,
+                content: thread.content,
+              ),
             ),
           threads.length > 2
               ? SizedBox(
@@ -60,7 +68,7 @@ class MultiThreadCard extends StatelessWidget {
                       const SizedBox(width: 12),
                       InkWell(
                         onTap: () {
-                          // TODO: 상세 보기 구현
+                          Get.toNamed(Routes.THREAD(id: threads[0].id));
                         },
                         child: const Text(
                           '엮인 글 더보기',
@@ -96,73 +104,81 @@ class _ThreadCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final seeMore = RxBool(content.length > 100);
+    final seeMore = (content.length > 100).obs;
 
     return Stack(
       children: [
-        SizedBox(
+        Container(
           width: double.infinity,
-          child: Container(
-            margin: const EdgeInsets.only(left: 16, bottom: 8),
-            padding: const EdgeInsets.only(left: 26, bottom: 12),
-            decoration: const BoxDecoration(
-              border: BorderDirectional(
-                start: BorderSide(
-                  color: ColorStyles.line01,
-                  width: 2,
-                ),
+          margin: const EdgeInsets.only(left: 16, bottom: 8),
+          padding: const EdgeInsets.only(left: 26, bottom: 12),
+          decoration: const BoxDecoration(
+            border: BorderDirectional(
+              start: BorderSide(
+                color: ColorStyles.line01,
+                width: 2,
               ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 16,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        DateFormat('y년 M월 d일(E)', 'ko').format(createdAt),
-                        style: const TextStyle(color: ColorStyles.sunset02),
-                      ),
-                      SizedBox(
-                        width: 16,
-                        height: 16,
-                        child: IconButton(
-                          onPressed: () => Get.bottomSheet(
-                            enableDrag: false,
-                            ThreadMoreBottomSheet(id: id),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 16,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      DateFormat('y년 M월 d일(E)', 'ko').format(createdAt),
+                      style: const TextStyle(color: ColorStyles.sunset02),
+                    ),
+                    SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: IconButton(
+                        onPressed: () => Get.bottomSheet(
+                          enableDrag: false,
+                          MoreMenuBottomSheet(
+                            menu: [
+                              MoreMenuModel(text: '엮인 글 쓰기', onPressed: () {}),
+                              MoreMenuModel(text: '수정', onPressed: () {}),
+                              MoreMenuModel(
+                                text: '삭제',
+                                onPressed: () {},
+                                color: ColorStyles.red01,
+                              ),
+                            ],
                           ),
-                          icon: const Icon(MinIcons.more_horiz),
-                          iconSize: 16,
-                          padding: const EdgeInsets.all(0),
-                          color: ColorStyles.sunset02,
                         ),
-                      )
+                        icon: const Icon(MinIcons.more_horiz),
+                        iconSize: 16,
+                        padding: const EdgeInsets.all(0),
+                        color: ColorStyles.sunset02,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(height: 8),
+              Obx(
+                () => RichText(
+                  text: TextSpan(
+                    text: seeMore.value ? content.substring(0, 100) : content,
+                    style: const TextStyle(color: ColorStyles.sunset01),
+                    children: [
+                      TextSpan(
+                        text: seeMore.value ? '...더보기' : '',
+                        style: const TextStyle(color: ColorStyles.sunset02),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            seeMore.value = false;
+                          },
+                      ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 8),
-                Obx(
-                  () => RichText(
-                    text: TextSpan(
-                      text: seeMore.value ? content.substring(0, 100) : content,
-                      style: const TextStyle(color: ColorStyles.sunset01),
-                      children: [
-                        TextSpan(
-                          text: seeMore.value ? '...더보기' : '',
-                          style: const TextStyle(color: ColorStyles.sunset02),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              seeMore.value = false;
-                            },
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
+              )
+            ],
           ),
         ),
         Container(
