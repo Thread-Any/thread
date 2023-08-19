@@ -15,7 +15,7 @@ class ComposeController extends GetxController {
   final showTitle = true.obs;
   final emoji = ''.obs;
   final title = ''.obs;
-  final contents = ''.obs;
+  final content = ''.obs;
 
   @override
   void onInit() {

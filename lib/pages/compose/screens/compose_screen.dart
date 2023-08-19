@@ -182,7 +182,7 @@ class ComposeScreen extends GetView<ComposeController> {
                                       validator: contentValidator,
                                       onSaved: (String? val) {
                                         if (val != null) {
-                                          controller.contents.value = val;
+                                          controller.content.value = val;
                                         }
                                       },
                                       textAlignVertical: TextAlignVertical.top,
@@ -250,7 +250,7 @@ class ComposeScreen extends GetView<ComposeController> {
       print({
         controller.emoji.value,
         controller.title.value,
-        controller.contents.value
+        controller.content.value
       });
 
       // TODO: database 저장
