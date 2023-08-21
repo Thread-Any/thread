@@ -2,9 +2,9 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:thread/pages/compose/controllers/compose_controller.dart';
 
 import '../controllers/thread_controller.dart';
+import '../../compose/controllers/compose_controller.dart';
 import '../../../common/min_icons_icons.dart';
 import '../../../const/colors.dart';
 import '../../../routes/app_pages.dart';
@@ -42,7 +42,7 @@ class ThreadSubThreadEditor extends GetView<ThreadController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          DateFormat('M월 d일에 엮인글 쓰기', 'ko')
+                          DateFormat('M월 d일에 엮인 글 쓰기', 'ko')
                               .format(DateTime.now()),
                           style: const TextStyle(
                             fontSize: 12,
@@ -200,8 +200,6 @@ class ThreadSubThreadEditor extends GetView<ThreadController> {
     Get.put(ComposeController()).content.value =
         controller.subThreadContent.value;
     controller.expendedSubThreadEditor();
-    Get.toNamed(
-      Routes.COMPOSE_SUB_THREAD(id: controller.id),
-    );
+    Get.toNamed(Routes.COMPOSE_SUB_THREAD(id: controller.id));
   }
 }

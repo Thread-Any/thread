@@ -10,6 +10,8 @@ import '../../../const/colors.dart';
 import '../../../models/more_menu.dart';
 import '../../../widgets/more_menu_bottom_sheet.dart';
 import '../../../widgets/custom_emoji_picker.dart';
+import '../../../widgets/delete_thread_dialog.dart';
+import '../../../routes/app_pages.dart';
 
 class ThreadScreen extends GetView<ThreadController> {
   const ThreadScreen({super.key});
@@ -123,11 +125,12 @@ class ThreadScreen extends GetView<ThreadController> {
                 menu: [
                   MoreMenuModel(
                     text: '수정',
-                    onPressed: () {},
+                    onPressed: () =>
+                        Get.toNamed(Routes.EDIT_THREAD(id: controller.id)),
                   ),
                   MoreMenuModel(
                     text: '삭제',
-                    onPressed: () {},
+                    onPressed: onDeleteThreadPressed,
                     color: ColorStyles.red01,
                   ),
                 ],
@@ -144,6 +147,14 @@ class ThreadScreen extends GetView<ThreadController> {
         backgroundColor: ColorStyles.bg01,
       ),
       backgroundColor: ColorStyles.bg01,
+    );
+  }
+
+  void onDeleteThreadPressed() {
+    Get.back();
+    Get.dialog(
+      DeleteThreadDialog(id: controller.id),
+      useSafeArea: true,
     );
   }
 }

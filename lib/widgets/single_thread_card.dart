@@ -2,10 +2,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:thread/routes/app_pages.dart';
 
-import '../models/more_menu.dart';
 import 'more_menu_bottom_sheet.dart';
+import '../routes/app_pages.dart';
+import '../models/more_menu.dart';
+import '../widgets/delete_thread_dialog.dart';
 import '../../common/min_icons_icons.dart';
 import '../../const/colors.dart';
 
@@ -85,15 +86,17 @@ class SingleThreadCard extends StatelessWidget {
                                 menu: [
                                   MoreMenuModel(
                                     text: '엮인 글 쓰기',
-                                    onPressed: () {},
+                                    onPressed: () => Get.toNamed(
+                                        Routes.COMPOSE_SUB_THREAD(id: id)),
                                   ),
                                   MoreMenuModel(
                                     text: '수정',
-                                    onPressed: () {},
+                                    onPressed: () =>
+                                        Get.toNamed(Routes.EDIT_THREAD(id: id)),
                                   ),
                                   MoreMenuModel(
                                     text: '삭제',
-                                    onPressed: () {},
+                                    onPressed: onDeleteThreadPressed,
                                     color: ColorStyles.red01,
                                   ),
                                 ],
@@ -134,6 +137,14 @@ class SingleThreadCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void onDeleteThreadPressed() {
+    Get.back();
+    Get.dialog(
+      DeleteThreadDialog(id: id),
+      useSafeArea: true,
     );
   }
 }

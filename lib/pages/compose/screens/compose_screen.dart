@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:thread/pages/thread/controllers/thread_controller.dart';
 
 import '../controllers/compose_controller.dart';
 import '../widgets/compose_buttons.dart';
+import '../../thread/controllers/thread_controller.dart';
+import '../../../routes/app_pages.dart';
 import '../../../widgets/custom_emoji_picker.dart';
 import '../../../common/min_icons_icons.dart';
 import '../../../const/colors.dart';
@@ -232,7 +233,7 @@ class ComposeScreen extends GetView<ComposeController> {
     String? id = Get.parameters['id'];
 
     // 상세에서 엮인글 작성으로 접근한 뒤 종료시 데이터 클리어
-    if (id != null && Get.currentRoute.startsWith("/threads")) {
+    if (id != null && Get.currentRoute.startsWith(Routes.threads)) {
       Get.put(ThreadController(id: int.parse(id))).subThreadContent.value = '';
     }
 

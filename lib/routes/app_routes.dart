@@ -9,6 +9,7 @@ abstract class Routes {
 
   static String THREAD({required int id}) => '$threads/$id';
   static String COMPOSE_SUB_THREAD({required int id}) => '$threads/$id$compose';
+  static String EDIT_THREAD({required int id}) => '$compose?id=$id';
 }
 
 abstract class _Paths {

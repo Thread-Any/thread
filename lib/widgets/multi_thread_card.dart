@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import 'delete_thread_dialog.dart';
+import 'more_menu_bottom_sheet.dart';
 import '../models/more_menu.dart';
 import '../routes/app_pages.dart';
 import '../models/thread.dart';
-import 'more_menu_bottom_sheet.dart';
 import '../../common/min_icons_icons.dart';
 import '../../const/colors.dart';
 
@@ -140,11 +141,19 @@ class _ThreadCard extends StatelessWidget {
                           enableDrag: false,
                           MoreMenuBottomSheet(
                             menu: [
-                              MoreMenuModel(text: '엮인 글 쓰기', onPressed: () {}),
-                              MoreMenuModel(text: '수정', onPressed: () {}),
+                              MoreMenuModel(
+                                text: '엮인 글 쓰기',
+                                onPressed: () => Get.toNamed(
+                                    Routes.COMPOSE_SUB_THREAD(id: id)),
+                              ),
+                              MoreMenuModel(
+                                text: '수정',
+                                onPressed: () =>
+                                    Get.toNamed(Routes.EDIT_THREAD(id: id)),
+                              ),
                               MoreMenuModel(
                                 text: '삭제',
-                                onPressed: () {},
+                                onPressed: onDeleteThreadPressed,
                                 color: ColorStyles.red01,
                               ),
                             ],
@@ -199,6 +208,14 @@ class _ThreadCard extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  void onDeleteThreadPressed() {
+    Get.back();
+    Get.dialog(
+      DeleteThreadDialog(id: id),
+      useSafeArea: true,
     );
   }
 }

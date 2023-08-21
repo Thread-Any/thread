@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -45,7 +47,13 @@ class MoreMenuBottomSheet extends StatelessWidget {
                           ),
                         ),
                       ),
-                      onPressed: item.onPressed,
+                      onPressed: () {
+                        Get.back();
+
+                        Timer(const Duration(milliseconds: 100), () {
+                          if (item.onPressed != null) item.onPressed!();
+                        });
+                      },
                       child: Text(
                         item.text,
                         style: TextStyle(
@@ -80,7 +88,13 @@ class MoreMenuBottomSheet extends StatelessWidget {
                               : const BorderRadius.all(Radius.zero),
                         ),
                       ),
-                      onPressed: item.onPressed,
+                      onPressed: () {
+                        Get.back();
+
+                        Timer(const Duration(milliseconds: 100), () {
+                          if (item.onPressed != null) item.onPressed!();
+                        });
+                      },
                       child: Text(
                         item.text,
                         style: TextStyle(

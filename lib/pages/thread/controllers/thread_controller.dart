@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:get/get.dart';
-import 'package:thread/pages/compose/controllers/compose_controller.dart';
 
 class ThreadController extends GetxController {
   ThreadController({
