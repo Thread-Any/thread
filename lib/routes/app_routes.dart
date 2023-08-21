@@ -7,7 +7,8 @@ abstract class Routes {
   static const search = _Paths.search;
   static const setting = _Paths.setting;
 
-  static String THREAD({required int id, int? index}) => '$threads/$id';
+  static String THREAD({required int id}) => '$threads/$id';
+  static String COMPOSE_SUB_THREAD({required int id}) => '$threads/$id$compose';
 }
 
 abstract class _Paths {

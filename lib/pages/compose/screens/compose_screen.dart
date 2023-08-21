@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:thread/pages/thread/controllers/thread_controller.dart';
 
 import '../controllers/compose_controller.dart';
 import '../widgets/compose_buttons.dart';
@@ -79,9 +80,7 @@ class ComposeScreen extends GetView<ComposeController> {
                                   width: 56,
                                   height: 56,
                                   child: IconButton(
-                                    onPressed: () {
-                                      Get.back();
-                                    },
+                                    onPressed: onClosePressed,
                                     icon: const Icon(MinIcons.close),
                                     iconSize: 24,
                                     color: ColorStyles.sunset01,
@@ -180,6 +179,7 @@ class ComposeScreen extends GetView<ComposeController> {
                                         MediaQuery.of(context).size.height / 2,
                                     child: TextFormField(
                                       validator: contentValidator,
+                                      initialValue: controller.content.value,
                                       onSaved: (String? val) {
                                         if (val != null) {
                                           controller.content.value = val;
@@ -226,6 +226,18 @@ class ComposeScreen extends GetView<ComposeController> {
         ),
       ),
     );
+  }
+
+  void onClosePressed() {
+    String? id = Get.parameters['id'];
+
+    // 상세에서 엮인글 작성으로 접근한 뒤 종료시 데이터 클리어
+    if (id != null && Get.currentRoute.startsWith("/threads")) {
+      Get.put(ThreadController(id: int.parse(id))).subThreadContent.value = '';
+    }
+
+    controller.clear();
+    Get.back();
   }
 
   String? titleValidator(String? val) {

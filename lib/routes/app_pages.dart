@@ -21,7 +21,7 @@ class AppPages {
       name: _Paths.threads,
       page: () => const ThreadsScreen(),
       title: 'Threads',
-      bindings: [ThreadsBind(), ThreadBind()],
+      binding: ThreadsBind(),
       transition: Transition.fadeIn,
       children: [
         GetPage(
@@ -30,6 +30,16 @@ class AppPages {
           title: 'Thread',
           binding: ThreadBind(),
           transition: Transition.rightToLeftWithFade,
+          children: [
+            GetPage(
+              name: _Paths.compose,
+              page: () => ComposeScreen(),
+              title: 'Compose Sub Thread',
+              binding: ComposeBind(),
+              showCupertinoParallax: false,
+              transition: Transition.fade,
+            )
+          ],
         )
       ],
     ),
