@@ -96,7 +96,10 @@ class SingleThreadCard extends StatelessWidget {
                                   ),
                                   MoreMenuModel(
                                     text: '삭제',
-                                    onPressed: onDeleteThreadPressed,
+                                    onPressed: () => Get.dialog(
+                                      DeleteThreadDialog(id: id),
+                                      useSafeArea: true,
+                                    ),
                                     color: ColorStyles.red01,
                                   ),
                                 ],
@@ -137,14 +140,6 @@ class SingleThreadCard extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  void onDeleteThreadPressed() {
-    Get.back();
-    Get.dialog(
-      DeleteThreadDialog(id: id),
-      useSafeArea: true,
     );
   }
 }

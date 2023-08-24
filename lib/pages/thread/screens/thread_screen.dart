@@ -130,7 +130,10 @@ class ThreadScreen extends GetView<ThreadController> {
                   ),
                   MoreMenuModel(
                     text: '삭제',
-                    onPressed: onDeleteThreadPressed,
+                    onPressed: () => Get.dialog(
+                      DeleteThreadDialog(id: controller.id),
+                      useSafeArea: true,
+                    ),
                     color: ColorStyles.red01,
                   ),
                 ],
@@ -147,14 +150,6 @@ class ThreadScreen extends GetView<ThreadController> {
         backgroundColor: ColorStyles.bg01,
       ),
       backgroundColor: ColorStyles.bg01,
-    );
-  }
-
-  void onDeleteThreadPressed() {
-    Get.back();
-    Get.dialog(
-      DeleteThreadDialog(id: controller.id),
-      useSafeArea: true,
     );
   }
 }

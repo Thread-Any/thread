@@ -111,9 +111,10 @@ class DeleteThreadDialog extends StatelessWidget {
 
   void onConfirmPressed() {
     // TODO: thread 삭제
-    Get.back();
     if (Get.currentRoute.startsWith('${Routes.threads}/')) {
-      Get.offNamed(Routes.threads);
+      Get.until((route) => Get.currentRoute == Routes.threads);
+    } else {
+      Get.back();
     }
 
     Get.snackbar(
